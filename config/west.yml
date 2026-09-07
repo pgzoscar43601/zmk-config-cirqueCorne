@@ -6,14 +6,15 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: petejohanson
       url-base: https://github.com/petejohanson
-    # Additional modules containing boards/shields/custom code can be listed here as well
-    # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
     - name: cirque-input-module
       remote: petejohanson
-      revision: main
+      # Fijado el 7-sep-2026. Era "main", que se mueve.
+      # Este commit (18-feb-2025) es el mismo con el que se compiló el
+      # firmware-original-2026-09-01, así que el trackpad se comporta igual.
+      revision: 0de55f36bc720b5be3d8880dc856d4d78baf5214
   self:
     path: config
