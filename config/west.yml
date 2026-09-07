@@ -4,18 +4,23 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: oscar
-      url-base: https://github.com/pgzoscar43601
+    - name: petejohanson
+      url-base: https://github.com/petejohanson
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
-    # Fork propio del driver del Cirque, 7-sep-2026.
-    # El original (petejohanson) lleva sin mantenimiento desde feb-2025 y tiene
-    # dos fallos que hacian que el trackpad se congelara y fuera a 16 lecturas
-    # por segundo. Ver el README del fork.
+    # Fijado el 7-sep-2026. Era "main", que se mueve.
+    # Este commit (18-feb-2025) es el mismo con el que se compiló el
+    # firmware-original-2026-09-01, así que el trackpad se comporta igual.
+    #
+    # REVERTIDO el 7-sep-2026: se probó un fork propio con dos parches
+    # (limpiar la bandera de dato-listo en las salidas de error, y cola de
+    # trabajo propia). Empeoró de 25 a 16 lecturas/s y no quitó el síntoma
+    # de tener que despegar el dedo. El fork sigue en
+    # github.com/pgzoscar43601/cirque-input-module, rama fix-dr-stall.
     - name: cirque-input-module
-      remote: oscar
-      revision: aae71d5955f796bde5d358bf6506b5511c57c267
+      remote: petejohanson
+      revision: 0de55f36bc720b5be3d8880dc856d4d78baf5214
   self:
     path: config

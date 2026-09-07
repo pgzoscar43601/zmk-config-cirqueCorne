@@ -27,9 +27,6 @@
 
 &pro_micro_i2c {
     status = "okay";
-    // 400 kHz en vez de los 100 kHz por defecto de Zephyr. Menos tiempo por
-    // lectura del trackpad, menos ventana para que se pierda un aviso.
-    clock-frequency = <400000>;
 
     glidepoint_right: glidepoint@2a {
         compatible = "cirque,pinnacle";
