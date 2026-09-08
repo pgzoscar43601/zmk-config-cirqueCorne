@@ -33,10 +33,15 @@
         reg = <0x2a>;
         status = "okay";
         dr-gpios = <&pro_micro 1 (GPIO_ACTIVE_HIGH)>;
-        sensitivity = "3x";   // era "2x" · subido el 7-sep-2026
-        // sleep;   ← QUITADO el 7-sep-2026. Ponía a dormir el sensor y los
-        //           primeros toques después de una pausa no registraban nada.
-        //           Costo: el trackpad escanea siempre, consume más batería.
+        // TRACKPAD EXACTAMENTE COMO FABRICA — 7-sep-2026, tarde.
+        // El cursor dejo de moverse (los taps si llegaban) con la config de la
+        // manana. Con el firmware de fabrica del 1-sep volvio a moverse, asi que
+        // estas dos lineas vuelven a su valor original y NO se tocan hasta saber
+        // si el trackpad aguanta. Lo que cambia respecto a la manana:
+        //   sensitivity: era "3x"  -> vuelve a "2x"
+        //   sleep:       se habia quitado -> vuelve a estar puesto
+        sensitivity = "2x";
+        sleep;
         //no-taps;
         y-invert;
         //x-invert;
