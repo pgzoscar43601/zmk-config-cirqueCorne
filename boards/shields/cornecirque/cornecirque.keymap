@@ -76,15 +76,26 @@
                 base_aprendiendo {
                         display-name = "Base";
 // Modificadores FÍSICOS mientras aprendes a teclear. Nada de tiempos.
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | ESC  |
+// Cerrada por Oscar el 8-sep-2026: «asi la quiero».
+//
+// |⇥ o ⌥|  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BSPC |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  Ñ  |  :   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  ´  | ESC  |
 //                    | GUI | NUM | SPC |   | ENT | SIMB| VENT|
+//
+// OJO, layout LATINOAMERICANO -- los nombres de ZMK enganan:
+//   pos 22  &kp SEMI      escribe  Ñ   (no ";")
+//   pos 23  &kp LS(DOT)   escribe  :
+//   pos 34  &kp LBKT      es la TECLA MUERTA del acento: se toca, no sale nada,
+//           y la vocal siguiente sale acentuada.  ´ + a = á
+//           Con shift, esa misma tecla da la dieresis: ¨ + u = ü
+//
+// El acento va SIEMPRE antes de la vocal. Al reves no funciona.
                         bindings = <
-   &mt LALT TAB &kp Q &kp W &kp E &kp R &kp T  &kp Y &kp U &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G     &kp H &kp J &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B     &kp N &kp M &kp COMMA &kp DOT &kp FSLH &kp ESC
-                    &kp LGUI &mo NUM &kp SPACE   &kp RET &mo SIMB &mo VENT
+   &mt LALT TAB &kp Q &kp W &kp E &kp R &kp T    &kp Y &kp U &kp I     &kp O   &kp P         &kp BSPC
+   &kp LCTRL    &kp A &kp S &kp D &kp F &kp G    &kp H &kp J &kp K     &kp L   &kp SEMI      &kp LS(DOT)
+   &kp LSHFT    &kp Z &kp X &kp C &kp V &kp B    &kp N &kp M &kp COMMA &kp DOT &kp LBKT      &kp ESC
+        &kp LGUI &mo NUM &kp SPACE   &kp RET &mo SIMB &mo VENT
                         >;
                 };
 
@@ -93,38 +104,71 @@
                         display-name = "CAGS";
 // Home row mods. Se llega con &to CAGS desde la capa SIST, y se regresa igual.
 // Mantener = modificador · Tocar = letra.  Orden CAGS: ⌃ ⌥ ⌘ ⇧ (meñique→índice)
-// | TAB  |A/⌃ |S/⌥ |D/⌘ |F/⇧ |  G  |   |  H  |J/⇧ |K/⌘ |L/⌥ |;/⌃ |  '   |
+// Las LETRAS Y SIMBOLOS son EXACTAMENTE los de la capa Base. Lo unico que
+// cambia es que la fila de casa lleva los modificadores al mantener, y que el
+// pulgar de la orilla abre NAV en vez de ser ⌘.
+//
+// | TAB  |A/⌃ |S/⌥ |D/⌘ |F/⇧ |  G  |   |  H  |J/⇧ |K/⌘ |L/⌥ |Ñ/⌃ |  :   |
+// | SHFT |  Z |  X |  C |  V |  B  |   |  N  |  M |  , |  . |  ´ | ESC  |
 //                    | NAV | NUM | SPC |   | ENT | SIMB| VENT|
                         bindings = <
-   &kp TAB   &kp Q        &kp W       &kp E       &kp R        &kp T     &kp Y &kp U        &kp I       &kp O       &kp P            &kp BSPC
-   &kp LCTRL &hml LCTRL A &hml LALT S &hml LGUI D &hml LSHFT F &kp G     &kp H &hmr RSHFT J &hmr RGUI K &hmr RALT L &hmr RCTRL SEMI  &kp SQT
-   &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B     &kp N &kp M        &kp COMMA   &kp DOT     &kp FSLH         &kp ESC
-                    &mo NAV &mo NUM &kp SPACE   &kp RET &mo SIMB &mo VENT
+   &kp TAB   &kp Q        &kp W       &kp E       &kp R        &kp T    &kp Y &kp U        &kp I       &kp O       &kp P           &kp BSPC
+   &kp LCTRL &hml LCTRL A &hml LALT S &hml LGUI D &hml LSHFT F &kp G    &kp H &hmr RSHFT J &hmr RGUI K &hmr RALT L &hmr RCTRL SEMI &kp LS(DOT)
+   &kp LSHFT &kp Z        &kp X       &kp C       &kp V        &kp B    &kp N &kp M        &kp COMMA   &kp DOT     &kp LBKT        &kp ESC
+        &mo NAV &mo NUM &kp SPACE   &kp RET &mo SIMB &mo VENT
                         >;
                 };
 
 // ============================================================================
                 numeros {
                         display-name = "Num";
-// Las flechas se quedan DONDE YA LAS TENÍAS. El Bluetooth se mudó a SIST.
+// Mano IZQUIERDA para calcular, mano DERECHA para moverse.
+// Ampliada el 8-sep-2026: los operadores y las cinco de navegacion, que antes
+// solo vivian en la capa Nav -- inalcanzable si no usas CAGS.
+//
 // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | ALT  |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |      |
+// |  ALT |  +  |  -  |  *  |  /  |  =  |   |  <- |  ^  |  -> | DEL |HOME | END  |
+// | SHFT |  (  |  )  |  %  |     |     |   |     |  v  |     |     |PGUP | PGDN |
+//
+// OJO layout LATINOAMERICANO: + es RBKT, - es FSLH, * es LS(RBKT),
+// / es LS(N7), = es LS(N0), ( es LS(N8), ) es LS(N9), % es LS(N5).
+// El punto decimal no hace falta ponerlo: &trans lo deja caer a la capa Base.
                         bindings = <
-   &kp TAB   &kp N1 &kp N2 &kp N3 &kp N4 &kp N5     &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &kp LALT  &trans &trans &trans &trans &trans     &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT &trans &trans &trans &trans &trans     &trans   &trans   &trans &trans    &trans &trans
-                          &trans &trans &kp SPACE   &kp RET &trans &trans
+   &kp TAB   &kp N1       &kp N2     &kp N3     &kp N4     &kp N5       &kp N6 &kp N7    &kp N8    &kp N9  &kp N0     &kp BSPC
+   &kp LALT  &kp RBKT     &kp FSLH   &kp LS(RBKT) &kp LS(N7) &kp LS(N0) &kp LEFT &kp UP  &kp RIGHT &kp DEL &kp HOME   &kp END
+   &kp LSHFT &kp LS(N8)   &kp LS(N9) &kp LS(N5) &trans     &trans       &trans &kp DOWN  &trans    &trans  &kp PG_UP  &kp PG_DN
+        &trans &trans &kp SPACE   &kp RET &trans &trans
                         >;
                 };
 
 // ============================================================================
                 simbolos {
                         display-name = "Simb";
+// ATADO AL LAYOUT **LATINOAMERICANO** de macOS -- medido el 8-sep-2026 con
+// UCKeyTranslate contra el layout activo (KeyboardLayout ID 89).
+// El teclado manda scancodes; la letra la decide el layout del sistema. Por eso
+// aqui NO se usan los nombres bonitos de ZMK (&kp AT, &kp LBRC...): esos estan
+// pensados para QWERTY ingles y en esta Mac escriben otra cosa.
+// Si algun dia la Mac se pasa a ingles, esta capa entera se descuadra.
+//
+// | TAB |  ? |  @ |  # |  $ |  % |   |  ^ |  & |  / |  ( |  ) | BSPC |
+// | CTL |  ¿ |  _ |    |  ! |    |   |    |    |    |    |  " |  `   |
+// | SFT |    |    |    |  ¡ |CAPS|   |    |    |    |    |    |      |
+//
+// Cerrada el 8-sep-2026. Tres decisiones de Oscar:
+//   1. Los corchetes, llaves y barras NO van: no los ocupa.
+//   2. Los operadores de cuenta pura (+ - * =) viven en la capa NUM, junto a
+//      los digitos. Aqui se quedan solo ( ) % / , que caen escribiendo texto.
+//   3. Las teclas sin uso son &none, no &trans: antes escribian la letra de la
+//      capa Base y se colaban letras sueltas al teclear simbolos.
+//
+// CAPS = &caps_word: se toca y SOLO la palabra siguiente sale en mayusculas.
+// Se apaga sola al llegar al espacio.
                         bindings = <
-   &kp TAB   &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &trans &trans &kp SPACE      &kp RET   &trans    &trans
+   &kp TAB   &kp LS(MINUS) &kp LA(Q)  &kp LS(N3) &kp LS(N4) &kp LS(N5)    &kp LA(LS(SQT)) &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp BSPC
+   &kp LCTRL &kp EQUAL     &kp LS(FSLH) &none    &kp LS(N1) &none         &none           &none      &none      &none      &kp LS(N2) &kp LA(LS(BSLH))
+   &kp LSHFT &none         &none      &none      &kp LA(N1) &caps_word    &none           &none      &none      &none      &none      &none
+        &trans &trans &kp SPACE   &kp RET &trans &trans
                         >;
                 };
 
@@ -134,10 +178,10 @@
 // Cada tecla nueva cae JUSTO ARRIBA de su flecha.
 // HOME sobre ← · PGDN sobre ↓ · PGUP sobre ↑ · END sobre →
                         bindings = <
-   &trans &trans &trans &trans &trans &trans     &kp HOME &kp PG_DN &kp PG_UP &kp END   &kp DEL &trans
-   &trans &trans &trans &trans &trans &trans     &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans  &trans
-   &trans &trans &trans &trans &trans &trans     &trans   &trans    &trans    &trans    &trans  &trans
-                        &trans &trans &trans     &trans &trans &trans
+   &trans &trans &trans &trans &trans &trans    &kp HOME &kp PG_DN &kp PG_UP &kp END   &kp DEL &trans
+   &trans &trans &trans &trans &trans &trans    &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &trans  &trans
+   &trans &trans &trans &trans &trans &trans    &trans   &trans    &trans    &trans    &trans  &trans
+        &trans &trans &trans   &trans &trans &trans
                         >;
                 };
 
@@ -147,17 +191,32 @@
 // Se SOSTIENE con el pulgar derecho, se opera con la mano IZQUIERDA.
 // Así la mano derecha se queda en el trackpad.
 //
-//   La FILA es la pantalla:  arriba = el 49"  ·  abajo = la Mac
+//   La FILA es la pantalla:  arriba = el monitor  ·  abajo = la Mac
 //   La COLUMNA es el lugar:  izquierda — centro — derecha
 //
-// | TAB  |⌘Tab | ⅓IZQ| ⅓CTR| ⅓DER| CLIC |
-// | CTRL | ⌘`  |⬆49" | MAX |⬇Mac | CLIC·D|
-// | SHFT | ESC | ½IZQ| REST| ½DER| CLIC·M|
+// |SPOT |⌘Tab | ⅓IZQ| ⅓CTR| ⅓DER| CLIC  |   |  —  |  —  |  —  |  —  |  —  |  —  |
+// |  —  | ⌘`  |↑PANT| MAX |↓PANT| CLIC·D|   |  —  |  —  |  —  |  —  |  —  |  —  |
+// |  —  | ESC | ½IZQ| REST| ½DER| CLIC·M|   |  —  |  —  |  —  |  —  |  —  |  —  |
+//
+// Cerrada el 8-sep-2026. La mano DERECHA entera es &none, no &trans: antes
+// seguía escribiendo letras (y u i o p h j k l ñ n m ´) justo cuando esa mano
+// está en el trackpad. Un roce metía una letra en el documento.
+//
+// Los nueve de acomodar ventanas son atajos de RECTANGLE, comprobados contra
+// su configuración el 8-sep-2026. Si algún día Rectangle cambia de atajos,
+// estas nueve dejan de servir aunque el teclado siga bien.
+// OJO: ↑PANT y ↓PANT son nextDisplay y previousDisplay; con dos pantallas
+// las dos mandan la ventana a la otra, o sea que hacen lo mismo.
+//
+// SPOT = &kp LG(SPACE) = ⌘espacio, el Spotlight de macOS: el buscador que abre
+// apps. Es la lupa que Oscar usaba en el F4 del teclado de la Mac; en un teclado
+// externo no existe esa tecla, se manda el atajo. Va pegada a ⌘Tab a proposito:
+// una salta entre apps abiertas, la otra abre la que no lo esta.
                         bindings = <
-   &trans &kp LG(TAB)   &kp LC(LA(A))    &kp LC(LA(S))   &kp LC(LA(D))     &mkp LCLK     &trans &trans &trans &trans &trans &trans
-   &trans &kp LG(LBKT) &kp LC(LA(UP))   &kp LC(LA(RET)) &kp LC(LA(DOWN))  &mkp RCLK     &trans &trans &trans &trans &trans &trans
-   &trans &kp ESC       &kp LC(LA(LEFT)) &kp LC(LA(Z))   &kp LC(LA(RIGHT)) &mkp MCLK     &trans &trans &trans &trans &trans &trans
-                                  &trans &trans &trans   &trans &trans &trans
+   &kp LG(SPACE) &kp LG(TAB)   &kp LC(LA(A))    &kp LC(LA(S))   &kp LC(LA(D))     &mkp LCLK    &none &none &none &none &none &none
+   &none &kp LG(GRAVE) &kp LC(LA(UP))   &kp LC(LA(RET)) &kp LC(LA(DOWN))  &mkp RCLK    &none &none &none &none &none &none
+   &none &kp ESC       &kp LC(LA(LEFT)) &kp LC(LA(Z))   &kp LC(LA(RIGHT)) &mkp MCLK    &none &none &none &none &none &none
+        &trans &trans &trans   &trans &trans &trans
                         >;
                 };
 
@@ -165,14 +224,24 @@
                 sistema {
                         display-name = "Sist";
 // Se abre pisando NUM y SIMB a la vez. Aquí vive lo que se aprieta una vez al año.
-// | F1  | F2  | F3  | F4  | F5  | F6  |   |     |BRI- |BRI+ |     |     |     |
-// | F7  | F8  | F9  | F10 | F11 | F12 |   |MUTE |VOL- |VOL+ |PLAY | ⏮  | ⏭  |
-// |STUDIO| →BASE|→CAGS|BOOT|RESET|    |   |BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |
+//
+// |  F1  | F2  | F3  | F4  | F5  | F6  |   |USB/BT|BRI- |BRI+ |  —  |  —  |  —  |
+// |  F7  | F8  | F9  | F10 | F11 | F12 |   |MUTE  |VOL- |VOL+ |PLAY | <<  | >>  |
+// |STUDIO|→BASE|→CAGS|BOOT |RESET|  —  |   |BTCLR |  —  |  —  |  —  |  —  |  —  |
+//
+// Cerrada el 8-sep-2026. Los cinco perfiles de Bluetooth (BT_SEL 0..4) se
+// quitaron: Oscar usa el teclado solo con su Mac, un perfil, y saltar entre
+// aparatos no le sirve. Quedan las dos de emergencia:
+//   BTCLR   borra el emparejamiento -- si las dos mitades dejan de verse.
+//   USB/BT  &out OUT_TOG, cambia a cable -- si el Bluetooth falla, sin esto el
+//           teclado no escribe ni conectandolo por USB.
+// Las teclas sin uso son &none: en la capa donde viven BOOT y RESET, no conviene
+// que las vacias sigan soltando letras de la capa Base.
                         bindings = <
-   &kp F1 &kp F2 &kp F3 &kp F4  &kp F5  &kp F6        &trans     &kp C_BRI_DN &kp C_BRI_UP &trans       &trans       &trans
-   &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12       &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &kp C_PP     &kp C_PREV   &kp C_NEXT
-   &studio_unlock &to BASE &to CAGS &bootloader &sys_reset &trans   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-                        &trans &trans &trans          &trans &trans &trans
+   &kp F1         &kp F2   &kp F3   &kp F4      &kp F5     &kp F6     &out OUT_TOG &kp C_BRI_DN &kp C_BRI_UP &none    &none      &none
+   &kp F7         &kp F8   &kp F9   &kp F10     &kp F11    &kp F12    &kp C_MUTE   &kp C_VOL_DN &kp C_VOL_UP &kp C_PP &kp C_PREV &kp C_NEXT
+   &studio_unlock &to BASE &to CAGS &bootloader &sys_reset &none      &bt BT_CLR   &none        &none        &none    &none      &none
+        &trans &trans &trans   &trans &trans &trans
                         >;
                 };
 
@@ -182,10 +251,10 @@
 // Vacía a propósito. ZMK Studio NO puede agregar capas después del build:
 // ésta es la que queda para cuando se te ocurra algo.
                         bindings = <
-   &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-   &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-   &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
-                        &trans &trans &trans   &trans &trans &trans
+   &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+   &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+   &trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+        &trans &trans &trans   &trans &trans &trans
                         >;
                 };
         };
